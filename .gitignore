@@ -1,0 +1,6 @@
+.*
+!.git*
+!.editorconfig
+!.env.example
+*~
+/vendor

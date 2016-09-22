@@ -1,0 +1,4 @@
+[submodule "bedrock-on-heroku"]
+	path = bedrock-on-heroku
+	url = https://github.com/frc/bedrock-on-heroku
+	branch = frc

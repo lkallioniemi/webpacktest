@@ -1,0 +1,32 @@
+{
+    "name": "frc/wp-bedrock-seed",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org"
+        }
+    ],
+    "require": {
+        "ext-redis": "*",
+        "php": "^5.6",
+        "frc/wp-harness": "*",
+        "wpackagist-plugin/captcha": "^4.2.4"
+    },
+    "require-dev": {
+    },
+    "extra": {
+        "installer-paths": {
+            "bedrock-on-heroku/web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
+            "bedrock-on-heroku/web/app/plugins/{$name}/": ["type:wordpress-plugin"],
+            "bedrock-on-heroku/web/app/themes/{$name}/": ["type:wordpress-theme"]
+        }
+    },
+    "scripts": {
+        "pre-update-cmd": [
+            "cd bedrock-on-heroku; composer update; ln -snf ../../../themes web/app/themes"
+        ],
+        "pre-install-cmd": [
+            "cd bedrock-on-heroku; composer install; ln -snf ../../../themes web/app/themes"
+        ]
+    }
+}
