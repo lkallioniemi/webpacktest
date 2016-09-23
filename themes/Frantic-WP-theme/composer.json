@@ -1,7 +1,0 @@
-{
-  "name": "frc/Frantic-WP-theme",
-  "type": "wordpress-theme",
-  "require": {
-    "php": ">=5.3"
-  }
-}
