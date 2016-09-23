@@ -2,3 +2,7 @@
 	path = bedrock-on-heroku
 	url = https://github.com/frc/bedrock-on-heroku
 	branch = frc
+[submodule "themes/Frantic-WP-theme"]
+	path = themes/Frantic-WP-theme
+	url = https://github.com/frc/Frantic-WP-theme.git
+	branch = 2.0
