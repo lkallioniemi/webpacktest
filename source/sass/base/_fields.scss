@@ -1,0 +1,531 @@
+// ============================================================================
+// Fields
+// ============================================================================
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+select:not(.ui-datepicker-month):not(.ui-datepicker-year),
+textarea {
+
+    border: 1px solid $color-blue;
+    box-shadow: inset 1px 1px $color-blue-light, inset -1px -1px $color-blue-light; // sass-lint:disable-line property-units
+    appearance: none;
+    background-color: $color-white;
+    //width: 100%;
+    font-size: rem(18);
+    padding: rem(6 13);
+    font-weight: 700;
+
+    &:focus {
+        outline: solid 2px $color-black;
+    }
+}
+
+input[type="search"] {
+    box-sizing: border-box;
+    appearance: none;
+
+    .search__results & {
+        font-size: rem(20);
+        padding: rem(10 13);
+    }
+}
+
+textarea {
+    overflow: auto;
+    width: 100%;
+    resize: vertical;
+}
+
+//
+
+.search-form {
+    label {
+        display: inline;
+    }
+}
+
+.search-submit {
+    background: none;
+    border: 0;
+    padding: 0;
+    overflow: hidden;
+    color: transparent;
+    width: rem(33);
+    height: rem(33);
+    //border-left: 1px solid $border-color-form;
+    position: relative;
+
+    &:focus {
+        outline: 2px solid $color-primary;
+    }
+
+    &::before, &::after {
+        position: absolute;
+        content: '';
+    }
+
+    &::before {
+        width: rem(19);
+        height: rem(19);
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        border: rem(4) solid $color-text-main;
+        border-radius: 50%;
+    }
+
+    &::after {
+        width: rem(4);
+        height: rem(8);
+        border-radius: rem(11);
+        bottom: 3%;
+        right: 16%;
+        transform: rotate(-45deg);
+        background-color: $color-text-main;
+    }
+}
+
+select {
+
+    &:not([multiple=multiple]):not(.ui-datepicker-month):not(.ui-datepicker-year) {
+
+        appearance: none;
+        background: {
+            color: $color-white;
+            position: right rem(15) center;
+            repeat: no-repeat;
+            size: rem(15) auto;
+        }
+        padding-right: rem(45);
+        border-radius: 0;
+        //width: 100%;
+
+    }
+
+    option {
+        font-weight: 700;
+    }
+
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+//
+
+%checkbase {
+    color: $color-primary;
+    position: relative !important;
+    //overflow-x: hidden;
+    line-height: 1.5;
+
+    input {
+        position: absolute;
+        //left: rem(-50);
+        visibility: hidden;
+
+        &:checked +label::after {
+            content: '';
+            display: block;
+            position: absolute;
+        }
+    }
+
+    label {
+        position: relative;
+        padding-left: rem(30) !important;
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: rem(4);
+            display: block;
+            width: rem(20);
+            height: rem(20);
+            border: 1px solid $color-blue;
+            background-color: $color-white;
+            visibility: visible;
+        }
+
+        &:hover {
+            //left nesting for clarity
+            // sass-lint:disable nesting-depth
+            &::before, &::after {
+                cursor: pointer;
+            }
+            // sass-lint:enable nesting-depth
+        }
+    }
+}
+
+//GF classes
+// sass-lint:disable class-name-format
+// sass-lint:disable id-name-format
+// sass-lint:disable placeholder-name-format
+
+.checkbox, .gfield_checkbox li {
+    @extend %checkbase;
+    cursor: pointer;
+    display: block;
+
+    input {
+        &:checked + label::after {
+            left: rem(4);
+            top: rem(1);
+            width: rem(12);
+            height: rem(20);
+            transform: rotate(45deg);
+            border: {
+                //sass-lint:disable property-units
+                bottom: 5px solid $color-blue;
+                right: 5px solid $color-blue;
+            }
+        }
+    }
+}
+
+.radio-button, .gfield_radio li {
+    @extend %checkbase;
+    cursor: pointer;
+    display: block;
+
+    input {
+        &:checked + label::after {
+            left: rem(4);
+            top: rem(8);
+            width: rem(12);
+            height: rem(12);
+            background-color: $color-blue;
+
+        }
+    }
+
+    label {
+        &::before, &::after {
+            border-radius: 50%;
+        }
+    }
+}
+
+.gfield_radio, .gfield_checkbox {
+    li {
+        font-weight: inherit;
+        color: inherit;
+        font-family: inherit;
+    }
+}
+
+.input-large {
+    padding: rem(11 20) !important;
+    font-size: rem(22);
+}
+
+//
+
+.gfield_time_hour, .gfield_time_minute {
+    label {
+        margin-left: rem(5);
+        display: inline-block;
+    }
+}
+
+.clear-multi {
+    .ginput_container {
+        margin-bottom: rem(20);
+    }
+}
+
+//
+
+.entry-content {
+    form {
+        ul {
+            @include content-ul-reset();
+        }
+    }
+}
+
+//
+
+.gform_wrapper {
+    //max-width: rem(645);
+    padding: {
+        bottom: rem(25);
+    }
+
+    ul {
+        @include ul-reset;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    input[type="password"],
+    input[type="search"],
+    select,
+    textarea {
+        width: 100%;
+    }
+
+    li {
+        margin-bottom: rem(20);
+    }
+
+    .gfield_label {
+        margin-bottom: rem(5);
+
+        .gfield_required {
+            color: $color-pink;
+        }
+    }
+
+    .instruction {
+        margin-top: rem(5);
+    }
+
+    .gf_progressbar {
+        margin-bottom: rem(20);
+        border: 2px solid $color-white;
+        outline: 1px solid $color-blue;
+        color: $color-white;
+
+        .gf_progressbar_percentage {
+            background: $color-blue;
+            padding: rem(3);
+        }
+    }
+}
+
+.gfield {
+    @extend %cf;
+
+    @include media-min($bp-sm) {
+
+        .validation_message, .gfield_description {
+            clear: both;
+        }
+    }
+}
+
+.ginput_complex {
+    label {
+        margin-bottom: rem(5);
+    }
+
+    span {
+        display: block;
+        margin-bottom: rem(20);
+    }
+}
+
+.gfield_description {
+    padding-top: rem(5);
+}
+
+.has-tooltip {
+    position: relative;
+
+    .ginput_container {
+        position: relative;
+
+        width: calc(100% - #{rem(55)});
+
+        max-width: rem(630);
+
+        .info__element {
+            position: absolute;
+            top: 0;
+            right: rem(-55);
+            border: 1px solid $color-blue;
+            background: $color-blue-light;
+            width: rem(40);
+            height: rem(40);
+            text-align: center;
+            line-height: rem(40);
+            border-radius: 50%;
+
+            &:hover, &:focus {
+                text-decoration: none;
+                background: darken($color-blue-light, 10%);
+                outline: none;
+            }
+        }
+    }
+
+    .gfield_description:not(.validation_message) {
+        display: none;
+
+        position: absolute;
+        z-index: 1;
+        border: 1px solid $color-blue;
+        background: $color-blue-light;
+        padding: rem(15);
+        border-radius: rem(10);
+        font-size: rem(18);
+        font-weight: 500;
+        right: rem(-10);
+        bottom: rem(-80);
+        max-width: rem(230);
+
+        &.state-open {
+            display: block;
+        }
+
+        @include media-min($bp-l) {
+            right: auto;
+            left: calc(100% + #{rem(30)});
+            bottom: auto;
+            top: rem(10);
+        }
+
+        &::after, &::before {
+            bottom: 100%;
+            right: 10%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+
+            @include media-min($bp-l) {
+                right: 100%;
+                top: 50%;
+                bottom: auto;
+            }
+        }
+
+        &::after {
+            border-bottom-color: $color-blue-light;
+            border-top-width: 0;
+            border-right-width: rem(16);
+            border-left-width: rem(16);
+            border-bottom-width: rem(20);
+
+            @include media-min($bp-l) {
+                border-bottom-color: transparent;
+                border-right-color: $color-blue-light;
+                border-left-width: 0;
+                border-top-width: rem(16);
+                border-bottom-width: rem(16);
+                border-right-width: rem(20);
+                top: rem(28);
+            }
+        }
+
+        &::before {
+            border-bottom-color: $color-blue;
+            border-top-width: 0;
+            border-right-width: rem(17);
+            border-left-width: rem(17);
+            border-bottom-width: rem(21);
+            margin-right: rem(-1);
+
+            @include media-min($bp-l) {
+                border-bottom-color: transparent;
+                border-right-color: $color-blue;
+                border-left-width: 0;
+                border-top-width: rem(17);
+                border-bottom-width: rem(17);
+                border-right-width: rem(21);
+                top: rem(27);
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+.ginput_container_time {
+    width: (100% / 3) !important;
+    display: inline-block;
+
+    input {
+        width: 70% !important;
+    }
+
+    select {
+        width: auto;
+    }
+}
+
+.gfield_required {
+    margin-left: (3);
+}
+
+.gfield_error {
+    input, select {
+        border-color: $color-error;
+    }
+
+    .gfield_label {
+        color: $color-error;
+    }
+}
+
+label {
+    display: block;
+}
+
+.validation_error {
+    border: {
+        //sass-lint:disable property-units
+        top: 3px double $color-error;
+        bottom: 3px double $color-error;
+    }
+    padding: {
+        top: rem(10);
+        bottom: rem(10);
+    }
+    color: $color-error;
+
+    margin-bottom: rem(20);
+}
+
+.validation_message {
+    color: $color-error;
+}
+
+.gfield_list {
+    border: 0;
+    margin: 0;
+
+    tr {
+        background: none !important;
+    }
+
+    td {
+        padding: 0;
+        border: 0;
+    }
+
+    .gfield_list_icons {
+        width: rem(26);
+        padding: rem(5);
+    }
+}
+
+.gfield_html {
+    h3 {
+        margin-bottom: 0;
+    }
+}
+
+.gform_confirmation_wrapper {
+    font-size: rem(18);
+
+    @include media-min(phablet) {
+        font-size: rem(21);
+    }
+}
+
+// sass-lint:enable class-name-format
+// sass-lint:enable id-name-format
+// sass-lint:enable placeholder-name-format

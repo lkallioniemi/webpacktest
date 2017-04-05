@@ -1,0 +1,24 @@
+// ============================================================================
+// Buttons
+// ============================================================================
+
+.button, %button, button {
+    background: $color-pink;
+    border-radius: 8px;
+    color: $color-white;
+    font-size: rem(18);
+    font-weight: 300;
+    letter-spacing: 1px;
+    padding: em(12 18, 16);
+
+    display: inline-block;
+    border: 0;
+
+    &:hover, &:focus {
+        text-decoration: none;
+        outline: none;
+        background: darken($color-pink, 10%);
+    }
+
+}
+

@@ -1,0 +1,23 @@
+html {
+    box-sizing: border-box;
+
+    @media print {
+        font-size: 70% !important;
+    }
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    background: $color-bg-body;
+}
+
+figure {
+    img {
+        display: block;
+    }
+}

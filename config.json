@@ -1,0 +1,23 @@
+{
+    "entry": {
+        "main": [
+            "./js/main.js",
+            "./sass/main.scss",
+            "./sass/print.scss"
+        ]
+    },
+    "watch": [
+        "/themes/mll/**/*.php",
+        "/source/sass/**/*.scss",
+        "/source/js/*.js"
+    ],
+    "publicPath": "/themes/mll",
+    "devUrl": "http://localhost:8012",
+    "proxyUrl": "http://localhost:8012",
+    "cacheBusting": "[name]_[hash:8]",
+    "browsers": [
+        "last 2 versions",
+        "android 4",
+        "opera 12"
+    ]
+}

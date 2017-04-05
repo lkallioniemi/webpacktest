@@ -1,0 +1,3 @@
+(function ( $ ) {
+    $(".jee").addClass("jee");
+} );

@@ -1,0 +1,77 @@
+// ============================================================================
+// Theme settings
+// ============================================================================
+
+$font-base: 16;
+
+// ============================================================================
+// Colors
+// ============================================================================
+
+$color-black: #000;
+$color-white: #fff;
+
+$color-darkish: #4e5965;
+
+$color-blue: #255cae;
+$color-blue-light: #e6f0fa;
+
+$color-beige: #dcd9d3;
+
+$color-gray: #b0b0b0;
+$color-gray-dark: #dedede;
+$color-gray-light: #f2f2f2;
+
+$color-pink: #e50053;
+$color-pink-light: #fae6f0;
+
+$border-color: $color-gray;
+$border-color-form: $color-gray-light;
+$color-primary: $color-blue;
+$color-error: $color-pink;
+
+$color-bg-body: $color-white;
+
+$color-hr: $color-gray;
+
+$color-text-main: $color-darkish;
+
+
+// ============================================================================
+// Typography
+// ============================================================================
+
+$font-main: 'Lato', sans-serif;
+$font-heading: 'Lato', sans-serif;
+$font-special: 'Bree Serif', serif;
+$font-code: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+$font-pre: "Courier 10 Pitch", Courier, monospace;
+$font-line-height: 1.4;
+
+
+
+
+// ============================================================================
+// Breakpoints
+// ============================================================================
+
+$bp-xxs: 25em; //400
+$bp-xs: 28.125em; //450
+$bp-s: 31.25em; //500
+$bp-ssm: 34.375em; //550
+$bp-smm: 37.5em; //600
+$bp-sm: 40.625em; //650
+$bp-m: 43.75em; //700
+$bp-mml: 46.875em; //750
+$bp-ml: 50em; //800
+$bp-l: 53.125em; //850
+$bp-xl: 59.375em; //950
+$bp-lxl: 62.5em; //1000
+$bp-xll: 68.75em; //1100
+$bp-xxl: 71.8em; //1150
+$bp-xxll: 75em; //1200
+$bp-xxxl: 80em; //1280
+$bp-xxxxl: 80.9375em; //1295
+
+
+

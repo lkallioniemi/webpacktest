@@ -1,0 +1,27 @@
+// ADMIN USES ID
+// sass-lint:disable no-ids
+// sass-lint:disable id-name-format
+// sass-lint:disable no-duplicate-properties
+
+/* ==========================================================================
+    Login styles
+/* ========================================================================== */
+
+@import 'base/config';
+@import 'base/mixins';
+
+.login h1 a {
+    height: rem(35);
+    width: auto;
+    background-size: contain;
+}
+
+// Hide back to blog link on login screen
+#backtoblog { visibility: hidden;  }
+
+// Hide lost password link
+// #nav { visibility: hidden; }
+
+// sass-lint:enable no-ids
+// sass-lint:enable id-name-format
+// sass-lint:enable no-duplicate-properties

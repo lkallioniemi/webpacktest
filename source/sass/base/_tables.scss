@@ -1,0 +1,177 @@
+// ============================================================================
+// Tables
+// ============================================================================
+/*!
+ * Responsive Tables v5.2.3 (http://gergeo.se/RWD-Table-Patterns)
+ * This is an awesome solution for responsive tables with complex data.
+ * Authors: Nadan Gergeo <nadan@blimp.se> (www.blimp.se) & Lucas Wiener <lucas@blimp.se>
+ * Licensed under MIT (https://github.com/nadangergeo/RWD-Table-Patterns/blob/master/LICENSE-MIT)
+ */
+
+.table__wrapper {
+    //position: relative;
+    overflow: hidden;
+    overflow-x: auto;
+
+    margin-bottom: 1.5em;
+
+    table {
+        margin-bottom: 0;
+    }
+
+    .table__fade {
+        z-index: 1000;
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: rem(40);
+        background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+        @media print {
+            display: none;
+        }
+    }
+
+    .accordion__content & {
+
+        .table__fade {
+            background: linear-gradient(to right, rgba(217, 239, 255, 0) 0%, rgba(217, 239, 255, 1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        }
+    }
+
+}
+
+.table__responsive[data-pattern="priority-columns"] {
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
+    position: relative;
+
+    //-ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch; // sass-lint:disable-line no-misspelled-properties
+    //overflow: -moz-scrollbars-none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.sticky-table__header {
+    background-color: #fff;
+    border: 0;
+    border-radius: 0;
+    border-top: 1px solid $color-blue;
+    border-bottom: 1px solid $color-blue;
+    visibility: hidden;
+    z-index: 990;
+    overflow: hidden;
+
+    @media print {
+        display: none;
+    }
+}
+
+.fixed-table__header .sticky-table__header {
+    position: fixed;
+    min-width: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 0 0 1.5em;
+    width: 100% !important;
+    border: 1px solid $color-blue;
+
+    @media print {
+        border: 1px solid $color-black;
+        word-break: break-word;
+    }
+}
+
+th, td {
+    padding: rem(10 19);
+    font-size: rem(18);
+
+    @media print {
+        padding: rem(8);
+        font-size: rem(15);
+    }
+}
+
+thead {
+
+    tr {
+        background-color: $color-blue;
+
+        @media print {
+            background-color: transparent;
+        }
+    }
+
+    th, td {
+        text-align: left;
+        vertical-align: top;
+        color: $color-white;
+
+        @media print {
+            color: $color-black;
+        }
+    }
+
+}
+
+th {
+    background-color: $color-blue;
+    text-align: left;
+    vertical-align: top;
+    color: $color-white;
+
+    @media print {
+        background-color: transparent;
+        color: $color-black;
+        border-right: 1px solid $color-black;
+    }
+}
+
+
+tbody tr:nth-child(even) {
+    background-color: $color-white;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: $color-blue-light;
+
+    @media print {
+        background-color: transparent;
+    }
+}
+
+tr {
+    @media print {
+        border-bottom: 1px solid $color-black;
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+}
+
+td {
+    border-left: 1px solid $color-blue;
+    border-right: 1px solid $color-blue;
+    vertical-align: top;
+
+    @media print {
+        border-color: $color-black;
+    }
+}
+
+td:first-child {
+    border-left: 0;
+}
+
+td:last-child {
+    border-right: 0;
+}

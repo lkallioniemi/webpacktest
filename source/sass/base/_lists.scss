@@ -1,0 +1,68 @@
+// ============================================================================
+// Lists
+// ============================================================================
+
+ul, ol {
+    margin: 0 0 rem(25) rem(25);
+    padding-left: 0;
+
+    .entry__content & {
+        @include media-min(phablet) {
+            margin-left: rem(40);
+        }
+    }
+
+    .box & {
+        margin-left: 0;
+        @include media-min(phablet) {
+            margin-left: rem(40);
+        }
+    }
+
+    .box .infograph__content & {
+        margin-left: 0;
+    }
+}
+
+ol {
+    list-style: decimal;
+
+    .content__area & {
+        list-style: none;
+        counter-reset: items;
+
+        li {
+            position: relative;
+            padding-left: 1.6em;
+            margin-bottom: rem(10);
+
+            &::before {
+                content: counter(items) '. ';
+                counter-increment: items;
+                position: absolute;
+                left: 0;
+                font-weight: 900;
+            }
+        }
+    }
+}
+
+ul {
+    list-style: disc;
+
+}
+
+li > ul,
+li > ol {
+    margin-bottom: 0;
+    margin-left: 1.5em;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin: 0 1.5em 1.5em;
+}
+

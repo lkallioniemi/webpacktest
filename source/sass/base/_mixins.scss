@@ -1,0 +1,210 @@
+// ============================================================================
+// Mixins
+// ============================================================================
+
+@function strip-unit($value) {
+    @return $value / ($value * 0 + 1);
+}
+
+@function rem($values) {
+    $vals: ();
+    $count: length($values);
+
+    @if $count == 1 {
+        @return ( strip-unit($values) / $font-base) * 1rem;
+    }
+
+    @each $value in $values {
+        $vals: append($vals, ( strip-unit($value) / $font-base) * 1rem);
+    }
+    @return $vals;
+}
+
+@function em($pxvalues, $base: $font-base) {
+    $thevals: ();
+    @each $pxval in $pxvalues {
+        $thevals: append($thevals, #{ strip-unit($pxval) / $base}em);
+    }
+    @return $thevals;
+}
+
+////
+$breakpoints: (
+    xxxs: 0,
+    mobile: 320px,
+    xxs: 400px,
+    xs: 450px,
+    s: 500px,
+    phablet: 500px,
+    ssm: 550px,
+    smm: 600px,
+    sm: 650px,
+    m: 700px,
+    mml: 750px,
+    tablet-s: 767px,
+    ml: 800px,
+    l: 850px,
+    xl: 950px,
+    lxl: 1000px,
+    tablet-l: 1000px,
+    xll: 1100px,
+    xxl: 1150px,
+    full: 1170px,
+    xxll: 1200px,
+    desktop: 1200px,
+    xxxl: 1280px,
+    xxxxl: 1295px
+) !default;
+
+@function breakpoint($bp, $em: true) {
+    // Try to pull a named breakpoint out of the $breakpoints map
+    @if type-of($bp) == 'string' {
+        @if map-has-key($breakpoints, $bp) {
+            @if($em) {
+                $bp: em(map-get($breakpoints, $bp));
+            } @else {
+                $bp: map-get($breakpoints, $bp);
+            }
+
+        } @else {
+            $bp: $bp;
+            @warn 'breakpoint(): "#{$bp}" is not defined in your $breakpoints setting.';
+        }
+    }
+
+    @return $bp;
+
+}
+
+
+@mixin media-min($width) {
+    @media (min-width: breakpoint($width)) {
+        @content;
+    }
+}
+
+@mixin media-min-max($min-width, $max-width) {
+    $max-width: breakpoint($max-width) - (1/16);
+
+    @media (min-width: breakpoint($min-width)) and (max-width: $max-width) {
+        @content;
+    }
+}
+
+@mixin media-max($width) {
+    $width: breakpoint($width) - (1/16);
+
+    @media (max-width: $width) {
+        @content;
+    }
+}
+
+$flex-justify: (
+    'left': flex-start,
+    'right': flex-end,
+    'center': center,
+    'justify': space-between,
+    'spaced': space-around,
+);
+
+$flex-align: (
+    'top': flex-start,
+    'bottom': flex-end,
+    'middle': center,
+    'stretch': stretch,
+);
+
+@mixin flex() {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+/// Horizontally or vertically aligns the items within a flex container.
+///
+/// @param {Keyword} $x [null] - Horizontal alignment to use. Can be `left`, `right`, `center`, `justify`, or `spaced`. Or, set it to `null` (the default) to not set horizontal alignment.
+/// @param {Keyword} $y [null] - Vertical alignment to use. Can be `top`, `bottom`, `middle`, or `stretch`. Or, set it to `null` (the default) to not set vertical alignment.
+@mixin flex-align($x: null, $y: null) {
+    @if $x {
+        @if map-has-key($flex-justify, $x) {
+            $x: map-get($flex-justify, $x);
+        } @else {
+            @warn 'flex-grid-row-align(): #{$x} is not a valid value for horizontal alignment. Use left, right, center, justify, or spaced.'
+        }
+    }
+
+    @if $y {
+        @if map-has-key($flex-align, $y) {
+            $y: map-get($flex-align, $y);
+        } @else {
+            @warn 'flex-grid-row-align(): #{$y} is not a valid value for vertical alignment. Use top, bottom, middle, or stretch.'
+        }
+    }
+
+    justify-content: $x;
+    align-items: $y;
+}
+
+/// Vertically align a single column within a flex row. Apply this mixin to a flex column.
+///
+/// @param {Keyword} $y [null] - Vertical alignment to use. Can be `top`, `bottom`, `middle`, or `stretch`. Or, set it to `null` (the default) to not set vertical alignment.
+@mixin flex-align-self($y: null) {
+    @if $y {
+        @if map-has-key($flex-align, $y) {
+            $y: map-get($flex-align, $y);
+        } @else {
+            @warn 'flex-grid-column-align(): #{$y} is not a valid value for alignment. Use top, bottom, middle, or stretch.'
+        }
+    }
+
+    align-self: $y;
+}
+
+@mixin fluid-size($properties, $min-vw, $max-vw, $min-value, $max-value) {
+
+    @each $property in $properties {
+        #{$property}: $min-value;
+    }
+
+    $min-vw: breakpoint($min-vw, false);
+    $max-vw: breakpoint($max-vw, false);
+
+    @include media-min($min-vw) {
+        @each $property in $properties {
+            #{$property}: calc(#{rem(strip-unit($min-value))} + #{strip-unit($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)});
+        }
+    }
+
+    @include media-min($max-vw) {
+        @each $property in $properties {
+            #{$property}: $max-value;
+        }
+    }
+}
+
+
+@function flex-video($ratio) {
+    $w: nth($ratio, 1);
+    $h: nth($ratio, 3);
+    @return $h / $w * 100%;
+}
+
+$flexvideo-ratio: 16 by 9 default;
+
+@mixin flex-video($ratio: $flexvideo-ratio) {
+    position: relative;
+    height: 0;
+    padding-bottom: flex-video($ratio);
+    overflow: hidden;
+
+    iframe,
+    object,
+    embed,
+    video,
+    *:first-child {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}

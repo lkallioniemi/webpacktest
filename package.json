@@ -1,0 +1,57 @@
+{
+    "name": "mll",
+    "version": "1.0.0",
+    "author": "Frantic",
+    "homepage": "https://frantic.com/",
+    "description": "mll.fi",
+    "repository": {
+        "type": "git",
+        "url": "git+https://sonjajaakkola@github.com/frc/mll.git"
+    },
+    "scripts": {
+        "build": "webpack --config build/webpack.config.js",
+        "build:watch": "webpack --progress --config build/webpack.config.js --watch",
+	"heroku-build": "webpack --progress --config build/webpack.config.heroku.js",
+        "build:production": "webpack --progress -p --config build/webpack.config.js",
+        "build:profile": "webpack --progress --profile --json --config build/webpack.config.js",
+        "start": "webpack --hide-modules --watch --config assets/build/webpack.config.js",
+        "lint": "eslint source/js build"
+    },
+    "engines": {
+        "node": ">= 6.9.4"
+    },
+    "dependencies": {
+        "autoprefixer": "^6.7.7",
+        "babel-core": "^6.24.0",
+        "babel-loader": "^6.4.1",
+        "browser-sync": "^2.18.8",
+        "browsersync-webpack-plugin": "^0.5.3",
+        "bs-html-injector": "^3.0.3",
+        "buble-loader": "^0.4.1",
+        "clean-webpack-plugin": "^0.1.16",
+        "copy-globs-webpack-plugin": "^0.2.0",
+        "css-loader": "^0.27.3",
+        "cssnano": "^3.10.0",
+        "eslint": "^3.18.0",
+        "eslint-loader": "^1.7.0",
+        "eslint-plugin-import": "^2.2.0",
+        "extract-text-webpack-plugin": "^2.1.0",
+        "file-loader": "^0.10.1",
+        "imagemin-mozjpeg": "^6.0.0",
+        "imagemin-webpack-plugin": "^1.4.4",
+        "node-sass": "^4.5.1",
+        "optimize-css-assets-webpack-plugin": "^1.3.0",
+        "postcss-loader": "^1.3.3",
+        "resolve-url-loader": "^2.0.2",
+        "rimraf": "^2.6.1",
+        "sass-loader": "^6.0.3",
+        "style-loader": "^0.16.0",
+        "url-loader": "^0.5.8",
+        "webpack": "^2.3.1",
+        "webpack-assets-manifest": "^0.6.2",
+        "webpack-dev-middleware": "^1.10.1",
+        "webpack-hot-middleware": "^2.17.1",
+        "webpack-merge": "^4.1.0",
+        "yargs": "^7.0.2"
+    }
+}

@@ -1,0 +1,237 @@
+// ============================================================================
+// Typography
+// ============================================================================
+
+html {
+    @include font-main;
+    color: $color-text-main;
+    font-size: 100%;
+    line-height: $font-line-height;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+    @include font-heading;
+    clear: both;
+    font-weight: bold;
+    line-height: 1.2;
+    margin: 0 0 rem(30);
+
+    .single .entry__content &, .template-page-edita .entry__content & {
+        margin-top: rem(35);
+        margin-bottom: rem(20);
+    }
+
+    .entry__content > & {
+        margin-top: rem(35);
+        margin-bottom: rem(20);
+    }
+
+    @media print {
+        page-break-after: avoid;
+    }
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+    text-rendering: optimizeLegibility;
+}
+
+h1, .h1, %h1 {
+    @include fluid-size(font-size, mobile, sm, 26px, 33px);
+    //@include media-min(sm) {
+    //    font-size: rem(33);
+    //}
+}
+
+h2, .h2, %h2 {
+    @include fluid-size(font-size, mobile, sm, 20px, 24px);
+}
+
+h3, .h3, %h3 {
+    @include fluid-size(font-size, mobile, sm, 18px, 22px);
+}
+
+h4, .h4, %h4 {
+    @include fluid-size(font-size, mobile, sm, 16px, 20px);
+}
+
+h5, .h5, %h5 {
+    font-size: rem(18);
+}
+
+h6, .h6, %h6 {
+    font-size: rem(16);
+}
+
+.lead {
+    font-size: rem(24);
+}
+
+p {
+    font-size: rem(18);
+    margin: 0 0 rem(30);
+
+    &:empty {
+        display: none;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    .content__area & {
+        @include media-min(phablet) {
+            font-size: rem(21);
+        }
+    }
+}
+
+p, h2, h3 {
+    @media print {
+        orphans: 3;
+        widows: 3;
+    }
+}
+
+ul, ol {
+    font-size: rem(18);
+
+    .content__area & {
+        @include media-min(phablet) {
+            font-size: rem(21);
+        }
+    }
+}
+
+
+// ============================================================================
+// Headings
+// ============================================================================
+
+
+blockquote, q {
+    //quotes: "" "";
+    position: relative;
+    margin: 0;
+    margin-bottom: rem(35);
+
+    &::before {
+        @include font-heading;
+
+        position: absolute;
+        content: '“';
+        color: $color-gray;
+        font-size: em(184, 22);
+        line-height: em(150, 184);
+        top: 0;
+        left: 0;
+        height: em(48, 184);
+    }
+
+    p {
+        padding-top: 1em;
+        padding-left: 3em;
+
+        &::after {
+            content: '”';
+        }
+    }
+}
+
+hr {
+    background-color: $color-hr;
+    border: 0;
+    height: rem(1);
+    margin-bottom: 1.5em;
+}
+
+abbr, acronym {
+    border-bottom: 1px dotted #666;
+    cursor: help;
+}
+
+address {
+    margin: 0 0 1.5em;
+}
+
+big {
+    font-size: 125%;
+}
+
+code, kbd, tt, var {
+    font-family: $font-code;
+    font-size: 0.9375em;
+}
+
+dfn, cite, em, i {
+    font-style: italic;
+}
+
+pre {
+    font-family: $font-pre;
+    font-size: 0.9375em;
+    margin-bottom: 1.6em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1.6em;
+}
+
+mark, ins {
+    text-decoration: none;
+}
+
+small {
+    font-size: 80%;
+}
+
+// ============================================================================
+// Links
+// ============================================================================
+
+a {
+    color: $color-blue;
+    text-decoration: none;
+
+    &:hover, &:focus, &:active {
+        text-decoration: underline;
+    }
+
+    &:focus {
+        outline: thin dotted;
+    }
+
+    &:hover, &:active {
+        outline: 0;
+    }
+}
+
+.link--arrow {
+    position: relative;
+    display: inline-block;
+    color: $color-white;
+    @include font-heading;
+
+
+    &:after {
+        @extend %iconbase;
+        @extend %icon--arrow;
+        display: inline-block;
+        //vertical-align: middle;
+        width: rem(33);
+        height: rem(33);
+        border-radius: 100%;
+        background-color: $color-blue;
+        text-align: center;
+        margin-left: rem(20);
+        //line-height: rem(33);
+        //disable rule because IE10 inherits sizes from parent to before element
+        line-height: 33px; //sass-lint:disable-line property-units
+        letter-spacing: rem(-3);
+    }
+}
+
+
+b, strong {
+    font-weight: bold;
+    //font-weight: normal;
+    //@include font-bold;
+}

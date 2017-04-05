@@ -1,0 +1,23 @@
+/* ==========================================================================
+    Editor styles
+/* ========================================================================== */
+
+@import 'base/config';
+@import 'base/mixins';
+
+th {
+    background: #f5f5f5;
+    text-align: left;
+}
+
+.lead {
+    font: {
+        family: 'Merriweather';
+        size: rem(22);
+        weight: normal;
+        style: normal;
+        stretch: normal;
+    }
+    line-height: 1.64;
+    color: #000;
+}

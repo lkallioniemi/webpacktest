@@ -1,0 +1,224 @@
+//sass-lint:disable no-duplicate-properties
+//sass-lint:disable indentation
+
+@font-face {
+    font-family: 'icomoon';
+    src: url('../fonts/icomoon.woff2') format('woff2'),
+         url('../fonts/icomoon.woff') format('woff'),
+    url('../fonts/icomoon.ttf') format('truetype'),
+    url('../fonts/icomoon.svg#icomoonregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    //unicode-range: U+E90D, U+E90C, U+E90B, U+E90A, U+E909, U+E908, U+E906, U+E904, U+E905, U+E910, U+E913, U+E914, U+E918, U+E900, U+E901, U+E902, U+E903, U+E90E, U+E90F, U+E907;
+}
+
+//@font-face {
+//    font-family: 'icomoon';
+//    src: url('../fonts/icomoon.eot?a1gpba');
+//    src: url('../fonts/icomoon.eot?a1gpba#iefix') format('embedded-opentype'),
+//    url('../fonts/icomoon.ttf?a1gpba') format('truetype'),
+//    url('../fonts/icomoon.woff?a1gpba') format('woff'),
+//    url('../fonts/icomoon.svg?a1gpba#icomoon') format('svg');
+//    font-weight: normal;
+//    font-style: normal;
+//    unicode-range: U+E90D, U+E90C, U+E90B, U+E90A, U+E909, U+E908, U+E906, U+E904, U+E905, U+E910, U+E913, U+E914, U+E918, U+E900, U+E901, U+E902, U+E903, U+E90E, U+E90F;
+//}
+
+//sass-lint:enable no-duplicate-properties
+//sass-lint:enable indentation
+
+%iconbase {
+    font-family: 'icomoon';
+    speak: none;
+
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+
+    text-transform: none;
+
+    line-height: 1;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon--"], [class*=" icon--"] {
+    &::before {
+        @extend %iconbase;
+    }
+}
+
+$icon-map: (
+    exclamation: '\e90d',
+    forms: '\e90c',
+    minus: '\e90b',
+    arrow: '\e90a',
+    help: '\e909',
+    plus: '\e908',
+    pagemap: '\e906',
+    quote: '\e904',
+    feedback: '\e905',
+    lock: '\e910',
+    info: '\e913',
+    counters: '\e914',
+    glossary: '\e918',
+    youtube: '\e900',
+    linkedin: '\e901',
+    facebook: '\e902',
+    twitter: '\e903',
+    print: '\e90e',
+    print-color: '\e907',
+    suomi24: '\e90f'
+);
+
+$icon-quote: '\e904';
+$icon-plus: '\e908';
+$icon-minus: '\e90b';
+$icon-info: '\e913';
+
+@each $name, $code in $icon-map {
+
+    %icon--#{$name} {
+        content: $code;
+    }
+
+    .icon--#{$name}:before {
+        @extend %icon--#{$name};
+    }
+}
+
+.link--arrow--large {
+    position: relative;
+    padding-right: em(30);
+    display: inline-block;
+    color: $color-darkish;
+
+    &::after {
+        position: absolute;
+        content: '';
+        display: inline-block;
+        border-right: 3px solid $color-blue;
+        border-bottom: 3px solid $color-blue;
+        width: em(20);
+        height: em(20);
+        transform: rotate(-45deg);
+        //bottom: 0;
+        top: 0;
+        bottom: 0;
+        right: rem(6);
+        margin: auto;
+        //padding-left: em(-5);
+    }
+
+    &.with-icon {
+        padding: {
+            left: rem(60);
+            top: rem(10);
+            bottom: rem(10);
+        }
+
+
+        .icon__circle {
+            position: absolute;
+            margin: auto;
+            left: 0;
+            top: 0;
+            bottom: 0;
+        }
+    }
+
+    &:hover, &:focus {
+        text-decoration: none;
+        color: $color-blue;
+
+        .icon__circle--alternative {
+            background: darken($color-yellow, 10%);
+        }
+    }
+}
+
+//
+
+.icon__circle {
+    @include absolute-center('&:before');
+    background: $color-blue;
+    width: rem(50);
+    height: rem(50);
+    display: block;
+    overflow: hidden;
+    color: transparent;
+    border-radius: 50%;
+
+    &::before {
+        font-size: 1.3em;
+        color: $color-white;
+    }
+
+    &:hover, &:focus {
+        outline: none;
+        background: darken($color-blue, 10%);
+    }
+
+    &--alternative {
+        background: $color-yellow;
+
+        &:hover, &:focus {
+            background: darken($color-yellow, 10%);
+        }
+    }
+
+    &--alternative-dark {
+        background: $color-blueest;
+
+        &:hover, &:focus {
+            background: darken($color-blueest, 10%);
+        }
+    }
+
+    &--small {
+        width: rem(35);
+        height: rem(35);
+        font-size: rem(15);
+
+        &.icon--arrow::before {
+            text-indent: rem(2);
+        }
+    }
+
+    &--large {
+        width: rem(55);
+        height: rem(55);
+        font-size: rem(33);
+
+    }
+
+    @include media-min(tablet-s) {
+        &--x-large {
+            width: rem(94);
+            height: rem(94);
+            font-size: rem(46);
+
+            &::before {
+                line-height: rem(94);
+            }
+        }
+    }
+
+    .link-list__wrapper & {
+        font-size: 1.5em;
+
+        &::before {
+            font-size: inherit;
+        }
+
+        &.icon--forms {
+            font-size: 1.9em;
+
+            &::before {
+                font-size: inherit;
+            }
+        }
+    }
+}
+

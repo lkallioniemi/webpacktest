@@ -1,0 +1,194 @@
+//Global classes
+
+@mixin font-heading {
+    font: {
+        family: $font-heading;
+        weight: 700;
+        style: normal;
+        stretch: normal;
+    }
+}
+
+@mixin font-special {
+    font: {
+        family: $font-special;
+        weight: normal;
+        style: normal;
+        stretch: normal;
+    }
+}
+
+@mixin font-main {
+    font: {
+        family: $font-main;
+        weight: 400;
+        style: normal;
+        stretch: normal;
+    }
+}
+
+
+// ============================================================================
+// Clearings
+// ============================================================================
+
+.cf, %cf {
+    &::before, &::after {
+        content: '';
+        display: table;
+        flex-basis: 0;
+        order: 1;
+    }
+
+    &::after {
+        clear: both;
+    }
+}
+
+// ============================================================================
+// Alignments
+// ============================================================================
+
+/* Floats */
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+.float-left {
+    display: inline;
+    float: left;
+    margin-right: 1.5em;
+}
+
+.float-right {
+    display: inline;
+    float: right;
+    margin-left: 1.5em;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Text-Align */
+.align-right {
+    text-align: right;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.align-left {
+    text-align: left;
+}
+
+// ============================================================================
+// Accessibility
+// ============================================================================
+
+/* Completely remove from the flow and screen readers. */
+.is-hidden {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* Completely remove from the flow but leave available to screen readers. */
+// PIXELS ALLOWED FOR .is-vishidden
+// sass-lint:disable property-units
+.is-vishidden {
+    position: absolute !important;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+// sass-lint:disable property-units
+
+//
+
+@mixin ul-reset {
+    margin: 0;
+    padding: 0;
+
+    li {
+        list-style: none;
+    }
+}
+
+@mixin content-ul-reset {
+    margin: 0;
+    padding: 0;
+
+    li {
+        list-style: none;
+        padding-left: 0;
+        position: static;
+
+        &::before {
+            display: none;
+        }
+    }
+}
+
+/// Vertically centers the element inside of its first non-static parent,
+/// @link http://www.sitepoint.com/centering-with-sass/ Centering With Sass
+@mixin vertical-center($child-elem) {
+    position: relative;
+
+    $selector: $child-elem;
+
+    #{$selector} {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+/// Horizontally centers the element inside of its first non-static parent,
+/// @link http://www.sitepoint.com/centering-with-sass/ Centering With Sass
+@mixin horizontal-center($child-elem) {
+    position: relative;
+
+    $selector: $child-elem;
+
+    #{$selector} {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+/// Absolutely centers the element inside of its first non-static parent,
+/// @link http://www.sitepoint.com/centering-with-sass/ Centering With Sass
+@mixin absolute-center($child-elem) {
+    position: relative;
+
+    $selector: $child-elem;
+
+    #{$selector} {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/// Absolutely centers the element inside of its first non-static parent,
+/// @link http://www.sitepoint.com/centering-with-sass/ Centering With Sass
+//@mixin absolute-center() {
+//
+//        position: absolute;
+//        top: 50%;
+//        left: 50%;
+//        transform: translate(-50%, -50%);
+//    }
+
